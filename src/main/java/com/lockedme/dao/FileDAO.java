@@ -1,10 +1,10 @@
 package com.lockedme.dao;
 
-import com.lockedme.exception.DAOException;
+
 
 public interface FileDAO {
 
-	void retrieveFiles() throws DAOException;
+	void retrieveFiles();
 
 	void addFiles(String filename);
 

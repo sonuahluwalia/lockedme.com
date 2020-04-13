@@ -4,26 +4,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.lockedme.Message;
 import com.lockedme.dao.FileDAO;
 import com.lockedme.exception.DAOException;
 
 public class FileDAOImpl implements FileDAO {
 
 
-	public void retrieveFiles() throws DAOException {
+	public void retrieveFiles() {
  
 		File dir = new File(System.getProperty("user.dir"));
 		String[] files = dir.list();
 		Arrays.sort(files);
 		if (files.length == 0) {
-			//System.out.println("The directory is empty");
-			throw new DAOException("Directory is empty");
-		} else {
+			Message.printMessage("Directory is empty");
+		 } else {
 			for (String aFile : files) {
-				System.out.println(aFile);
+				Message.printMessage(aFile);
 			}
 		}
-
 	}
 
 	public void addFiles(String filename) {
@@ -32,11 +31,11 @@ public class FileDAOImpl implements FileDAO {
 
 		try {
 			if (file.createNewFile()) {
-				System.out.println(file.getAbsolutePath() + " File Created");
+				Message.printMessage(file.getAbsolutePath() + " File Created");
 			} else
-				System.out.println("File " + file.getAbsolutePath() + " already exists");
+				Message.printMessage("File " + file.getAbsolutePath() + " already exists");
 		} catch (IOException e) {
-			System.out.println(e);
+			Message.printMessage(e.getMessage());
 		}
 	}
 
@@ -45,12 +44,12 @@ public class FileDAOImpl implements FileDAO {
 			File f = new File(fileName); // file to be delete
 			if (f.delete()) // returns Boolean value
 			{
-				System.out.println(f.getName() + " deleted"); // getting and printing the file name
+				Message.printMessage(f.getName() + " deleted"); // getting and printing the file name
 			} else {
-				System.out.println("File not found in the location "+f.getAbsolutePath());
+				Message.printMessage("File not found in the location "+f.getAbsolutePath());
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			Message.printMessage(e.getMessage());
 		}
 	}
 
@@ -61,7 +60,7 @@ public class FileDAOImpl implements FileDAO {
 		boolean flag = false;
 
 		if (files.length == 0) {
-			System.out.println("The directory is empty");
+			Message.printMessage("The directory is empty");
 		} else {
 			for (String aFile : files) {
 				// System.out.println(aFile);
@@ -72,9 +71,9 @@ public class FileDAOImpl implements FileDAO {
 			}
 		}
 		if (flag) {
-			System.out.println("File " + fileName + " found in directory " + dir.getAbsolutePath());
+			Message.printMessage("File " + fileName + " found in directory " + dir.getAbsolutePath());
 		} else {
-			System.out.println("File " + fileName + " not found in directory " + dir.getAbsolutePath());
+			Message.printMessage("File " + fileName + " not found in directory " + dir.getAbsolutePath());
 			
 		}
 	}

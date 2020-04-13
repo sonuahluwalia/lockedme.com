@@ -6,17 +6,20 @@ import java.io.InputStreamReader;
 
 import java.util.regex.Pattern;
 
-import com.lockedme.helper.Message;
-
 public class InputValidationsImpl implements InputValidations {
- 	String option;
+	String option;
 	int userInput;
 	BufferedReader scan;
 
+	public void initialize() {
+		scan = new BufferedReader(new InputStreamReader(System.in));
+
+	}
+
 	public int readMainOption() {
 		Message.welcome();
-		scan = new BufferedReader(new InputStreamReader(System.in));
- 		try {
+		initialize();
+		try {
 			option = scan.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +38,7 @@ public class InputValidationsImpl implements InputValidations {
 	private int validateNumber() {
 		if (isNumeric(option)) {
 			return Integer.parseInt(option); // user input is an integer
-		} else {			
+		} else {
 			return -1;
 		}
 
@@ -70,7 +73,7 @@ public class InputValidationsImpl implements InputValidations {
 
 	public int readOption2() {
 		Message.option2Message();
-		scan = new BufferedReader(new InputStreamReader(System.in));
+		initialize();
 		try {
 			option = scan.readLine();
 		} catch (IOException e) {
@@ -107,6 +110,7 @@ public class InputValidationsImpl implements InputValidations {
 
 	public String readFilename() {
 		Message.readFilenameMessage();
+		initialize();
 		String fileName = "";
 		try {
 			fileName = scan.readLine();

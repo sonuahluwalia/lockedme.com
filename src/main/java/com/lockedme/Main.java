@@ -2,7 +2,6 @@ package com.lockedme;
 
 import com.lockedme.dao.impl.FileDAOImpl;
 import com.lockedme.exception.DAOException;
-import com.lockedme.helper.Message;
 
 public class Main {
 	private static InputValidationsImpl input;
@@ -25,12 +24,7 @@ public class Main {
 			switch (mainChoice) {
 			case 1:
 				optionChoice = "main_menu";
-				try {
-					fo.retrieveFiles();
-				} catch (DAOException e) {
-					// TODO Auto-generated catch block
-					System.out.println(e);
-				}
+				fo.retrieveFiles();
 				break;
 			case 2:
 				optionChoice = "main_menu";
@@ -61,7 +55,7 @@ public class Main {
 			if (optionChoice.equals("main_menu")) {
 				mainChoice = input.readMainOption();
 			} else if (optionChoice.equals("second_menu")) {
-				choice2 = input.readOption2(); 
+				choice2 = input.readOption2();
 			}
 		}
 	}
